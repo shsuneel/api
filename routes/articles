@@ -1,0 +1,62 @@
+var express = require('express');
+var router = express.Router();
+var http = require('http');
+
+function getArticles(callbackFunc) {
+    var articles = [{
+        "title": "FREE",
+        "class": {
+            "article": "plan",
+            "price": "plan__price"
+        },
+        "price": "$99",
+        "desc": "FOR_HOBBY",
+        "features": [
+            "1 Workspace",
+            "UNLTD_TRF",
+            "10",
+            "BASIC_SUPPORT"
+        ]
+    },
+    {
+        "title": "RECOMMENDED",
+        "class": {
+            "article": "plan plan--highlighted",
+            "title": "plan__title plan__anotation",
+            "price": "plan__price"
+        },
+        "price": "$99",
+        "desc": "AMB_PROJECTS",
+        "features": [
+            "5",
+            "UNLTD_TRF",
+            "100",
+            "PLUS_SUPPORT"
+        ]
+    },
+    {
+        "title": "PREMIUM",
+        "class": {
+            "article": "plan",
+            "price": "plan__price"
+        },
+        "price": "$99",
+        "desc": "ENT_SOL",
+        "features": [
+            "10 Workspaces",
+            "UNLTD_TRF",
+            "500",
+            "BASIC_SUPPORT"
+        ]
+    }
+];
+    callbackFunc(articles);
+}
+
+router.get('/', function (req, res, next) {
+    getArticles(function(data){
+        res.send(JSON.stringify(data));
+    });
+});
+
+module.exports = router;
